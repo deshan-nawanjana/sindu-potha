@@ -1,0 +1,251 @@
+@font-face {
+    font-family: "CircularStd";
+    font-weight: 400;
+    src: url(./assets/fonts/CircularStd-Book.woff);
+}
+
+@font-face {
+    font-family: "CircularStd";
+    font-weight: 500;
+    src: url(./assets/fonts/CircularStd-Bold.woff);
+}
+
+@font-face {
+    font-family: "CircularStd";
+    font-weight: 600;
+    src: url(./assets/fonts/CircularStd-Black.woff);
+}
+
+* {
+    font-family: "CircularStd";
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    outline: none;
+}
+
+body {
+    margin: 0px;
+}
+
+.ribbon {
+    width: calc(100vw - 40px);
+    height: 40px;
+    padding: 20px;
+    background-color: #EEE;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    display: flex;
+}
+
+.home {
+    width: 40px;
+    background-image: url('data:image/svg+xml,<svg version="1.1" viewBox="0 0 16 16" width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="fill: rgb(17, 17, 17); opacity: 0.47; transform: rotate(0deg) scale(0.5, 0.5);"><g><path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"></path></g></svg>');
+    background-position: 0px -1px;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    margin-right: 10px;
+    background-color: #1111;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.home:hover {
+    background-color: #1112;
+}
+
+.home:active {
+    background-color: #1111;
+}
+
+.ribbon input {
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    padding: 0px 20px;
+    font-size: 16px;
+    background-color: #1111;
+    width: 400px;
+    max-width: 60vw;
+}
+
+.loading {
+    height: calc(100vh - 120px);
+    background-image: url("data:image/svg+xml,%0A%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z' opacity='.25'/%3E%3Cpath d='M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z'%3E%3CanimateTransform attributeName='transform' type='rotate' dur='0.75s' values='0 12 12;360 12 12' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px auto;
+    margin-top: 80px;
+    opacity: 0.45;
+}
+
+.content, .results {
+    padding: 120px 40px 40px 40px;
+}
+
+.home-content, .results-tray {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.artist-item {
+    width: calc(calc(100vw / 3) - 175px);
+    background-color: #1111;
+    margin: 15px;
+    padding: 20px 20px 20px 90px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml,<svg version="1.1" viewBox="0 0 16 16" width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="fill: rgb(17, 17, 17); opacity: 0.27; transform: rotate(0deg) scale(0.7, 0.7);"><g><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path></g></svg>');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: auto 100%;
+    transition: background 0.2s;
+}
+
+.artist-item:hover {
+    background-color: #1112;
+}
+
+.artist-item:active {
+    background-color: #1111;
+}
+
+.ai-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ai-count {
+    font-size: 14px;
+    padding-top: 8px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.artist-info .ai-name {
+    font-size: 30px;
+}
+
+.artist-info .ai-count {
+    font-size: 17px;
+}
+
+.artist-songs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.song-item {
+    width: calc(calc(100vw / 3) - 175px);
+    background-color: #1111;
+    margin: 15px;
+    padding: 20px 20px 20px 90px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml,<svg version="1.1" viewBox="0 0 16 16" width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="fill: rgb(17, 17, 17); opacity: 0.27; transform: rotate(0deg) scale(0.6, 0.6);"><g><path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"></path><path fill-rule="evenodd" d="M12 3v10h-1V3h1z"></path><path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"></path><path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"></path></g></svg>');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: auto 100%;
+    transition: background 0.2s;
+}
+
+.song-item:hover {
+    background-color: #1112;
+}
+
+.song-item:active {
+    background-color: #1111;
+}
+
+.si-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.si-sub-name {
+    font-size: 14px;
+    padding-top: 8px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-info .si-name {
+    font-size: 30px;
+}
+
+.song-info .si-sub-name {
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #1111;
+    display: inline-block;
+    padding: 8px 18px;
+    margin-top: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.song-info .si-sub-name:hover {
+    background-color: #1112;
+}
+
+.song-info .si-sub-name:active {
+    background-color: #1111;
+}
+
+pre {
+    font-size: 24px;
+    font-weight: 600;
+    text-wrap: wrap;
+}
+
+.results-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #555;
+}
+
+@media (max-width: 1000px) {
+    .artist-item {
+        width: calc(calc(100vw / 2) - 190px);
+    }
+    .song-item {
+        width: calc(calc(100vw / 2) - 190px);
+    }
+}
+
+@media (max-width: 600px) {
+    .content, .results {
+        padding: 100px 15px 15px 15px;
+    }
+    .artist-item {
+        width: calc(100vw - 170px);
+    }
+    .song-item {
+        width: calc(100vw - 170px);
+    }
+    .artist-info {
+        padding: 10px 15px 0px 15px;
+    }
+    .song-info {
+        padding: 10px 15px 0px 15px;
+    }
+    pre {
+        font-size: 18px;
+        padding: 0px 15px;
+    }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./index.png" type="image/x-icon">
+    <!-- preloads -->
+    <link rel="preload" href="./assets/fonts/CircularStd-Book.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="./assets/fonts/CircularStd-Bold.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="./assets/fonts/CircularStd-Black.woff" as="font" type="font/woff" crossorigin>
+    <!-- styles -->
+    <link rel="stylesheet" href="./index.css">
+    <!-- libraries -->
+    <script src="./assets/libraries/vue.min.js"></script>
+    <script src="./assets/libraries/sin.utf.js"></script>
+    <!-- scripts -->
+    <script src="./index.js" defer></script>
+    <!-- page title -->
+    <title>Sinhala Songs Book</title>
+</head>
+<body>
+    <div id="app">
+        <!-- ribbon -->
+        <div class="ribbon">
+            <div class="home" @click="viewHome"></div>
+            <input
+                type="text"
+                placeholder="Search songs, artists..."
+                v-model="states.search">
+            </input>
+        </div>
+        <!-- loading -->
+        <div class="loading" v-if="states.loading === true"></div>
+        <!-- search results -->
+        <div class="results" v-if="states.loading === false && states.search !== ''">
+            <div class="results-title">Songs</div>
+            <div class="results-tray">
+                <div
+                    class="song-item"
+                    @click="viewSong(item.id)"
+                    v-for="(item, index) in results.songs">
+                    <div class="si-name">
+                        {{ item.title_si }}
+                    </div>
+                    <div class="si-sub-name">
+                        {{ item.title_en }}
+                    </div>
+                </div>
+            </div>
+            <div class="results-title">Artists</div>
+            <div class="results-tray">
+                <div
+                    class="song-item"
+                    @click="viewArtist(item)"
+                    v-for="(item, index) in results.artists">
+                    <div class="si-name">
+                        {{ item.name }}
+                    </div>
+                    <div class="ai-count">
+                        {{ item.ids.length }}
+                        {{ item.ids.length === 1 ? 'Song' : 'Songs' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content -->
+        <div class="content" v-if="states.loading === false && states.search === ''">
+            <!-- home view -->
+            <div class="home-content" v-if="states.view ==='home'">
+                <div
+                    class="artist-item"
+                    @click="viewArtist(item)"
+                    v-for="item in artists">
+                    <div class="ai-name">
+                        {{ item.name }}
+                    </div>
+                    <div class="ai-count">
+                        {{ item.ids.length }}
+                        {{ item.ids.length === 1 ? 'Song' : 'Songs' }}
+                    </div>
+                </div>
+            </div>
+            <!-- artist view -->
+            <div class="artist-content" v-if="states.view ==='artist'">
+                <div class="artist-info">
+                    <div class="ai-name">
+                        {{ states.artist.name }}
+                    </div>
+                    <div class="ai-count">
+                        {{ states.artist.ids.length }}
+                        {{ states.artist.ids.length === 1 ? 'Song' : 'Songs' }}
+                    </div>
+                </div>
+                <div class="artist-songs">
+                    <div
+                        class="song-item"
+                        @click="viewSong(id)"
+                        v-for="id in states.artist.ids">
+                        <div class="si-name">
+                            {{ songs[id].title_si }}
+                        </div>
+                        <div class="si-sub-name">
+                            {{ songs[id].title_en }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- song view -->
+            <div class="artist-content" v-if="states.view ==='song'">
+                <div class="song-info">
+                    <div class="si-name">
+                        {{ states.song.title_si }}
+                    </div>
+                    <div
+                        class="si-sub-name"
+                        @click="viewArtist(states.song.artist)">
+                        {{ states.song.artist }}
+                    </div>
+                </div>
+                <pre>{{ states.song.lyrics }}</pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
