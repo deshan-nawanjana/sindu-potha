@@ -54,6 +54,7 @@ const app = new Vue({
                     output.artists.push(item)
                 }
             }
+            console.log(1)
             // return output
             return output
         }

@@ -35,7 +35,7 @@
         <div class="loading" v-if="states.loading === true"></div>
         <!-- search results -->
         <div class="results" v-if="states.loading === false && states.search !== ''">
-            <div class="results-title">Songs</div>
+            <div class="results-title" v-if="results.songs.length > 0">Songs</div>
             <div class="results-tray">
                 <div
                     class="song-item"
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="results-title">Artists</div>
+            <div class="results-title" v-if="results.artists.length > 0">Artists</div>
             <div class="results-tray">
                 <div
                     class="song-item"
@@ -63,6 +63,10 @@
                         {{ item.ids.length === 1 ? 'Song' : 'Songs' }}
                     </div>
                 </div>
+            </div>
+            <div class="results-tray results-empty"
+                v-if="results.songs.length === 0 && results.artists.length === 0">
+                Sorry... No results
             </div>
         </div>
         <!-- content -->

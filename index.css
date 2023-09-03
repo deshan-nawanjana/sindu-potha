@@ -219,6 +219,11 @@ pre {
     color: #555;
 }
 
+.results-empty {
+    font-size: 18px;
+    color: #666;
+}
+
 @media (max-width: 1000px) {
     .artist-item {
         width: calc(calc(100vw / 2) - 190px);
